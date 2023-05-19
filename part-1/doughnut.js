@@ -1,5 +1,3 @@
-const Stuffing = require("./stuffing");
-
 module.exports = class Doughnut {
 	constructor({ name = "Пышка" }, stuffings = []) {
 		this.name = name;
@@ -7,9 +5,7 @@ module.exports = class Doughnut {
 		this.stuffings = stuffings;
 	}
 	get weight() {
-		let stuffingsWeight = this.stuffings.map((el) => el.weight);
-		let weight = this.baseWeight;
-		stuffingsWeight.forEach((el) => (weight += el));
-		return weight;
+		let stuffingsWeight = this.stuffings.reduce((acc, cur) => acc + cur.weight, 0);
+		return this.baseWeight + stuffingsWeight;
 	}
 };

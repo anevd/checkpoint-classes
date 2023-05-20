@@ -1,37 +1,25 @@
-const Participant = require("./participant");
-
 module.exports = class Matcher {
 	constructor(participants) {
 		this.participants = [...participants];
 	}
 	getFemales() {
-		let females = [];
-		this.participants.forEach((el) => {
-			if (el.gender === "female") {
-				females.push(el);
-			}
-		});
+		let females = this.participants.filter((el) => el.gender === "female");
 		return females;
 	}
 	getMales() {
-		let males = [];
-		this.participants.forEach((el) => {
-			if (el.gender === "male") {
-				males.push(el);
-			}
-		});
+		let males = this.participants.filter((el) => el.gender === "male");
 		return males;
 	}
 	generatePairs() {
-		let pairs = [];
-		for (let i = 0; i < this.participants.length; i++) {
-			for (let j = i; j < this.participants.length; j++) {
-				if (i != j && this.participants[i].gender != this.participants[j].gender) {
-					let pair = [];
-					pair.push(this.participants[i]);
-					pair.push(this.participants[j]);
-					pairs.push(pair);
-				}
+		const pairs = [];
+		const women = this.getFemales();
+		const men = this.getMales();
+		for (let elem of women) {
+			for (let el of men) {
+				let pair = [];
+				pair.push(elem);
+				pair.push(el);
+				pairs.push(pair);
 			}
 		}
 		return pairs;

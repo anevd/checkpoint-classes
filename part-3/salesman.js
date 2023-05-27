@@ -1,11 +1,8 @@
-const Client = require("./client");
+const Person = require("./person");
 
-module.exports = class Salesman extends Client {
+module.exports = class Salesman extends Person {
 	constructor(firstName, lastName, middleName, phone, hireDate) {
 		super(firstName, lastName, middleName, phone);
 		this.hireDate = hireDate;
-	}
-	getFio() {
-		return `${this.firstName} ${this.middleName} ${this.lastName}`;
 	}
 };

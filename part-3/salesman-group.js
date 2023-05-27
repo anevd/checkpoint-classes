@@ -1,12 +1,9 @@
-module.exports = class SalesmanGroup {
+const PersonGroup = require("./person-group");
+module.exports = class SalesmanGroup extends PersonGroup {
 	constructor(salesmen) {
 		this.salesmen = salesmen;
 	}
-	getFios() {
-		let fios = [];
-		this.salesmen.forEach((el) => {
-			fios.push(`${el.firstName} ${el.middleName} ${el.lastName}`);
-		});
-		return fios.join(", ");
+	get salesmen() {
+		return this.persons;
 	}
 };
